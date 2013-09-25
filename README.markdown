@@ -51,13 +51,18 @@ This will bootstrap the host and install the "ntp" recipe from opscode into 11.2
 
 ### Specifying cookbooks
 
-If the cookbook you want is an [Opscode Community Cookbooks](http://community.opscode.com/cookbooks), you can just specify it in the Berksfile. See the [Berkshelf](http://berkshelf.com) website for more information on specifying dependencies via git or http.
+If the cookbook you want is an [Opscode Community Cookbooks](http://community.opscode.com/cookbooks), you can just specify it in the Berksfile. See the [Berkshelf](http://berkshelf.com) website for more information on specifying dependencies via git or http. 
+
+**IMPORTANT**
+Once specified as a dependency, you need to chef to actually install it, this is done by adding the name of the cookbook to the [runlist](https://github.com/capotej/franchise/blob/master/share/franchise/role.thing.json.template#L9)
 
 ### Customizing cookbooks
 
 Sometimes the cookbook you want to install isnt available or doesn't exist. In this case, just drop your cookbook into the ```cookbooks```directory and specify it in the Berksfile as such:
 
     cookbook "runit", path: "cookbooks/runit"
+
+
 
 
 
