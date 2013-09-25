@@ -16,7 +16,7 @@ Here's a high level view of the execution model:
 4. Once bootstrapped, your cookbooks and roles are uploaded to the host.
 5. Chef-solo is run against your runlist, which runs through your cookbooks.
 
-For more detail, view the [fabfile.py.template]()
+For more detail, view the [fabfile.py.template](https://github.com/capotej/franchise/blob/master/share/franchise/fabfile.py.template)
 
 ### Installation
 
@@ -35,3 +35,30 @@ For zsh users:
     source ~/.zshenv
 
 ### Generating an franchise
+
+Once installed, usage is very simple:
+
+    franchise new ircbox 
+
+This will create a franchise ```ircbox/``` in the current directory.
+
+### Running it
+
+    cd ircbox
+    fab --user=root --password=hihaters chef:hosts=11.22.33.44
+
+This will bootstrap the host and install the "ntp" recipe from opscode into 11.22.33.44
+
+### Specifying cookbooks
+
+If the cookbook you want is an [Opscode Community Cookbooks](http://community.opscode.com/cookbooks), you can just specify it in the Berksfile. See the [Berkshelf](http://berkshelf.com) website for more information on specifying dependencies via git or http.
+
+### Customizing cookbooks
+
+Sometimes the cookbook you want to install isnt available or doesn't exist. In this case, just drop your cookbook into the ```cookbooks```directory and specify it in the Berksfile as such:
+
+    cookbook "runit", path: "cookbooks/runit"
+
+
+
+
