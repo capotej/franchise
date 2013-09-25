@@ -6,6 +6,6 @@
   "description": "###NAME### role.",
   "chef_type": "role",
   "run_list": [
-    "ntp",
+    "ntp"
   ]
 }

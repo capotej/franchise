@@ -2,8 +2,6 @@ from fabric.api import *
 from fabric.contrib.files import exists
 from fabric.contrib.project import upload_project
 
-env['user'] = "ubuntu"
-
 env.warn_only = True
 
 def bootstrap():
@@ -26,10 +24,11 @@ def bootstrap():
   run('sudo apt-get upgrade -y')
   run('sudo apt-get install -y %s' % ' '.join(base_packages))
   run('sudo gem install --no-rdoc --no-ri chef ohai')
+  run('sudo touch /var/franchise')
 
 def chef():
   local("berks install --path=vendor/cookbooks")
-  chef_binary = "/var/lib/gems/1.8/bin/chef-solo"
+  chef_binary = "/var/franchise"
   if not exists(chef_binary): bootstrap()
   if not exists('/tmp/chef'): run('mkdir /tmp/chef')
   if not exists('/tmp/roles'): run('mkdir /tmp/roles')
@@ -39,5 +38,5 @@ def chef():
   put('roles/###NAME###.json', '/tmp/roles/')
   put('###NAME###.json', '/tmp/chef/cookbooks')
   put('solo.rb', '/tmp/chef/cookbooks')
-  run('cd /tmp/chef/cookbooks && sudo /var/lib/gems/1.8/bin/chef-solo -c solo.rb -j ###NAME###.json')
+  run('cd /tmp/chef/cookbooks && sudo /usr/bin/env chef-solo -c solo.rb -j ###NAME###.json')
 
