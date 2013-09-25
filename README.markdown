@@ -1,6 +1,6 @@
 # Franchise 
 
-Franchise is a "framework" for managing debian based chef-solo installs. After pasting around various bits from different projects, I extracted them into a common generator, allowing you to create franchises easily.
+Franchise is a "framework" for managing debian based chef-solo installs. After pasting around various bits from different projects, I extracted them into a common generator, allowing you to create franchises easily. For an example of this structure see [monitorbox](http://github.com/capotej/monitorbox).
 
 ### Dependencies
 * gem install berksfile (ruby 1.9 only)
