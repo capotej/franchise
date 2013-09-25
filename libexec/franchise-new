@@ -1,0 +1,38 @@
+#!/bin/sh
+# Usage: franchise new [franchise-name]
+# Summary: creates a franchise project in [franchise-name]
+# Help: base new ircserver
+set -e
+
+dest=$1
+name=$(basename $dest)
+share=$_FRANCHISE_ROOT/share/franchise
+
+# check if dest exist
+if [ -e $dest ]; then
+ echo "$dest already exists, aborting"
+ exit
+fi
+
+echo "creating $name"
+
+mkdir -p $dest/cookbooks
+mkdir -p $dest/roles
+mkdir -p $dest/vendor
+
+#Install stock files
+cp $share/Berksfile $dest/Berksfile
+cp $share/solo.rb $dest/solo.rb
+cp $share/gitignore $dest/.gitignore
+
+#Install templates
+sed -e "s/###NAME###/$name/g" $share/role.thing.json.template > $dest/roles/$name.json
+sed -e "s/###NAME###/$name/g" $share/thing.json.template > $dest/$name.json
+sed -e "s/###NAME###/$name/g" $share/fabfile.py.template > $dest/fabfile.py
+
+
+
+
+
+
+
