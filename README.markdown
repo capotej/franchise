@@ -26,12 +26,12 @@ Clone the project:
 
 For bash users:
 
-    echo 'eval "$($HOME/.base_sub/bin/base init -)"' >> ~/.bash_profile
+    echo 'eval "$($HOME/.franchise_sub/bin/franchise init -)"' >> ~/.bash_profile
     exec bash
 
 For zsh users:
 
-    echo 'eval "$($HOME/.base_sub/bin/base init -)"' >> ~/.zshenv
+    echo 'eval "$($HOME/.franchise_sub/bin/franchise init -)"' >> ~/.zshenv
     source ~/.zshenv
 
 ### Generating an franchise
